@@ -5,23 +5,43 @@
 public class ArrayTopic {
     public static int[] TwoSum(int [] nums, int target) {
         for (int i = 0; i < nums.length; i++) {
-            int this_key = nums[i];
+            int first_num = nums[i];
             for (int j = 0; j < nums.length; j++) {
-                int this_value = nums[j];
-                if (this_key + this_value == target){
-                    System.out.println(this_key);
-                    System.out.println(this_value);
-                    return new int[]{this_key, this_value};
+                int second_num = nums[j];
+                if (first_num + second_num == target){
+                    System.out.println(first_num);
+                    System.out.println(second_num);
+                    return new int[]{first_num, second_num};
                 }
             }
         }
         return null;
     }
+    //有序版，下标为1,2,3...用双指针解法
+    public static int[] TwoSumForSortedList(int [] nums, int target) {
+        int index_this = 0;
+        int index_max = nums.length - 1;
+        while (index_this < index_max){
+            int two_sum = nums[index_this] + nums[index_max];
+            if (two_sum == target){
+                return new int[]{index_this + 1,index_max + 1};
+            } else if( two_sum < target ){
+                ++index_this;
+            } else {
+                --index_max;
+            }
+        }
+        return null;
+    }
+
 
     public static void main(String[] args) {
         int nums[] = new int[]{2, 5, 7, 8};
         TwoSum(nums, 10);
+        System.out.println(TwoSumForSortedList(nums, 10)[0]);
+        System.out.println(TwoSumForSortedList(nums, 10)[1]);
     }
+
 
 }
 
