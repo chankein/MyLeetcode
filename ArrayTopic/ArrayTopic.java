@@ -34,6 +34,36 @@ public class ArrayTopic {
         return null;
     }
 
+/*
+给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。
+请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。
+你可以假设 nums1 和 nums2 不会同时为空。
+*/
+    public static int findMidian(int [] nums1, int [] nums2) {
+        if (nums1 <= nums2){
+            return findorderedMidian(nums1, nums2);
+        } else {
+            return findorderedMidian(nums2, nums1);
+        }
+    }
+
+    public static int findorderedMidian(int [] nums1, int [] nums2) {
+        // nums1.length <= nums2.length
+        if (nums1.length==0) {
+            if (nums2.length % 2 == 1){
+                return nums2[nums2.length/2]
+            } else {
+                return (nums2[nums2.length/2 - 1] + nums2[nums2.length/2] + 0.0)/2
+            }
+        }
+        int sep_nums1 = nums1.length/2;
+        int sep_nums2 = nums2.length/2;
+        if (nums1[sep_nums1] < nums2[sep_nums2] && nums1[sep_nums1 + 1] > nums2[sep_nums2]){
+            return nums1[sep_nums1];
+        }
+    }
+
+
 
     public static void main(String[] args) {
         int nums[] = new int[]{2, 5, 7, 8};
