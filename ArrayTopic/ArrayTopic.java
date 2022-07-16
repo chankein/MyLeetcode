@@ -47,20 +47,37 @@ public class ArrayTopic {
         }
     }
 
-    public static int findorderedMidian(int [] nums1, int [] nums2) {
+    public static int findOrderedMidian(int [] nums1, int [] nums2) {
         // nums1.length <= nums2.length
+        // nums1 = [x_0,x_1,x_2,...,x_(n-1)]:[0,1,5,7]
+        // nums2 = [y_0,y_1,y_2,...,y_(m-1)]:[2,3,4,6]
+        //sep_min<=sep_max;
+        //sep_min
+        //size = n+m
+        //if(nums[])
         if (nums1.length==0) {
             if (nums2.length % 2 == 1){
                 return nums2[nums2.length/2]
             } else {
-                return (nums2[nums2.length/2 - 1] + nums2[nums2.length/2] + 0.0)/2
+                return (nums2[nums2.length/2 - 1] + nums2[nums2.length/2])/2.0
+            }
+        } else {
+            int sep_nums1 = nums1.length/2;
+            int sep_nums2 = nums2.length/2;
+            if(nums1[sep_nums1] <= nums2[sep_nums2])
+            if ((nums1.length + nums2.length) % 2 == 0){
+                //偶数时
+            } else {
+                //奇数时
+            }
+            
+
+
+            if (nums1[sep_nums1] < nums2[sep_nums2] && nums1[sep_nums1 + 1] > nums2[sep_nums2]){
+                return nums1[sep_nums1];
             }
         }
-        int sep_nums1 = nums1.length/2;
-        int sep_nums2 = nums2.length/2;
-        if (nums1[sep_nums1] < nums2[sep_nums2] && nums1[sep_nums1 + 1] > nums2[sep_nums2]){
-            return nums1[sep_nums1];
-        }
+        
     }
 
 
