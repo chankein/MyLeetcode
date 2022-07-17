@@ -39,6 +39,7 @@ public class ArrayTopic {
 请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。
 你可以假设 nums1 和 nums2 不会同时为空。
 */
+/*
     public static double findMidian(int [] nums1, int [] nums2) {
         if (nums1.length <= nums2.length){
             return findOrderedMidian(nums1, nums2);
@@ -138,7 +139,7 @@ public class ArrayTopic {
             return getKth(nums1, i + 1, end1, nums2, start2, end2, k - (i - start1 + 1));
         }
     }
-
+*/
 
 /*
 给定一个长度为 n 的整数数组 height 。有 n 条垂线，第 i 条线的两个端点是 (i, 0) 和 (i, height[i]) 。
@@ -155,16 +156,21 @@ n == height.length
 0 <= height[i] <= 104
 */
     public static int maxArea(int[] height) {
-        static int areaSize = 0;
-        
-        private static void updateAreaSize(int width, int height){
-            areaSize = max(width*height, areaSize);
-        }
-        for (int i = height.length; i > 0; i--) {
-            for (int j = i - 1; j > 0 ;j--){
-                updateAreaSize(i-j,min(height[i],height[j]));
+        int areaSize = 0;
+        int left = 0;
+        int right = height.length - 1;
+        while (left < right){
+            int this_areaSize = (right-left)*Math.min(height[left],height[right]);
+            if (this_areaSize > areaSize){
+                    areaSize = this_areaSize;
+            }
+            if (height[left]<height[right]){
+                left++;
+            }else{
+                right--;
             }
         }
+        return areaSize;
     }
 
     public static void main(String[] args) {
@@ -174,28 +180,13 @@ n == height.length
         //System.out.println(TwoSumForSortedList(nums, 10)[1]);
         int nums1[] = new int[]{2, 5, 7, 8};
         int nums2[] = new int[]{6, 9, 10, 11};
-        double result = findOrderedMidian(nums1, nums2);
-        System.out.println(result);
+        //double result = findOrderedMidian(nums1, nums2);
+        //System.out.println(result);
+
+        int height[]= new int[]{1,8,6,2,5,4,8,3,7};
+        System.out.println(maxArea(height));
     }
 
 
-}
-
-class Solution {
-    public int maxArea(int[] height) {
-        int areaSize = 0;
-        private void updateAreaSize(int width, int height){
-            areaSize = max(width*height, areaSize);
-        }
-        for (int i = height.length; i > 0; i--) {
-            for (int j = i - 1; j > 0 ;j--){
-                int this_areaSize = (i-j)*min(height[i],height[j]);
-                if (this_areaSize > areaSize){
-                    areaSize = this_areaSize;
-                }
-                updateAreaSize(i-j,min(height[i],height[j]));
-            }
-        }
-    }
 }
 
