@@ -1,38 +1,27 @@
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 /*
-1. 两数之和:在数组中找到 2 个数之和等于给定值的数字，结果返回 2 个数字在数组中的下标。
+1,两数之和
+给定一个整数数组 nums 和一个整数目标值 target，请你在该数组中找出 和为目标值 target  的那 两个 整数，并返回它们的数组下标。
+
+你可以假设每种输入只会对应一个答案。但是，数组中同一个元素在答案里不能重复出现。
+
+你可以按任意顺序返回答案。
+
 */
 public class ArrayTopic {
     public static int[] TwoSum(int [] nums, int target) {
-        for (int i = 0; i < nums.length; i++) {
-            int first_num = nums[i];
-            for (int j = 0; j < nums.length; j++) {
-                int second_num = nums[j];
-                if (first_num + second_num == target){
-                    System.out.println(first_num);
-                    System.out.println(second_num);
-                    return new int[]{first_num, second_num};
-                }
+        Map<Integer,Integer> hashmap = new HashMap<Integer,Integer>();
+
+        int left = 0;
+        int right = nums.length - 1;
+        for  (int i = 0; i < nums.length; ++i){
+            if(hashmap.containsKey(target-nums[i])){
+                return new int[]{i,hashmap.get(target-nums[i])};
             }
+            hashmap.put(nums[i],i);
         }
-        return null;
-    }
-    //有序版，下标为1,2,3...用双指针解法
-    public static int[] TwoSumForSortedList(int [] nums, int target) {
-        int index_this = 0;
-        int index_max = nums.length - 1;
-        while (index_this < index_max){
-            int two_sum = nums[index_this] + nums[index_max];
-            if (two_sum == target){
-                return new int[]{index_this + 1,index_max + 1};
-            } else if( two_sum < target ){
-                ++index_this;
-            } else {
-                --index_max;
-            }
-        }
-        return null;
+        
+        return new int[0];
     }
 
 /*
@@ -183,31 +172,37 @@ n == height.length
      public static List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
         List<List<Integer>> result = new ArrayList<>();
-        List<Integer> map_searched = new ArrayList<>(){};
+        List<String> added_result = new ArrayList<>();
         for (int i = 0; i < nums.length-2; i++) {
             int x = nums[i];
+            int left = i + 1;
+            int right = nums.length -1;
             
-            if (map_searched.contains(x)) {
-                continue;
-            } else{
-                map_searched.add(x);
-            }
-            for (int j = i + 1; j < nums.length; j++) {
-                int y = nums[j];
-                int z = -x - y;
-                for (int k = j + 1; k < nums.length; k++){
-                    if (nums[k]==z){
-                        List<Integer> this_result = new ArrayList<>();
-                        this_result.add(x);
-                        this_result.add(y);
-                        this_result.add(z);
-                        result.add(this_result);
+            if (x > 0 && x == nums[left]){continue;}
+            while (left < right ){
+                if(x + nums[left] + nums[right] == 0){
+                String founded_result = Integer.toString(x) + '_' + Integer.toString(nums[left]);
+                if (!added_result.contains(founded_result)){
+                        List<Integer> element = new ArrayList<>();
+                        element.add(x);
+                        element.add(nums[left]);
+                        element.add(nums[right]);
+                        result.add(element);
+                        added_result.add(founded_result);
+                        ++left;
+                    } else{
+                    ++left;
+                    continue;
                     }
+                
+                } else if (x + nums[left] + nums[right] > 0){
+                    --right;
+                } else{
+                    ++left;
                 }
             }
         }
         return result;
-
     }
     public static void main(String[] args) {
         //int nums[] = new int[]{2, 5, 7, 8};
@@ -220,10 +215,13 @@ n == height.length
         //System.out.println(result);
 
         int height[]= new int[]{1,8,6,2,5,4,8,3,7};
-        System.out.println(maxArea(height));
+        //System.out.println(maxArea(height));
 
-        numsThreeSum = [-1,0,1,2,-1,-4];
-        System.out.println(Arrays.toString(threeSum(numsThreeSum)));
+        int numsThreeSum[] = new int[] {-1,0,1,2,-1,-4};
+        List<List<Integer>> result = threeSum(numsThreeSum);
+        System.out.println(result.toString());
+
+        
     }
 
 
