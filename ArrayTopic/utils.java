@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.HashMap;
 /*
 1. 两数之和:在数组中找到 2 个数之和等于给定值的数字，结果返回 2 个数字在数组中的下标。
 */
@@ -181,32 +180,6 @@ n == height.length
 注意：答案中不可以包含重复的三元组。
  */
      public static List<List<Integer>> threeSum(int[] nums) {
-        Arrays.sort(nums);
-        List<List<Integer>> result = new ArrayList<>();
-        List<Integer> map_searched = new ArrayList<>(){};
-        for (int i = 0; i < nums.length-2; i++) {
-            int x = nums[i];
-            
-            if (map_searched.contains(x)) {
-                continue;
-            } else{
-                map_searched.add(x);
-            }
-            for (int j = i + 1; j < nums.length; j++) {
-                int y = nums[j];
-                int z = -x - y;
-                for (int k = j + 1; k < nums.length; k++){
-                    if (nums[k]==z){
-                        List<Integer> this_result = new ArrayList<>();
-                        this_result.add(x);
-                        this_result.add(y);
-                        this_result.add(z);
-                        result.add(this_result);
-                    }
-                }
-            }
-        }
-        return result;
 
     }
     public static void main(String[] args) {
@@ -223,7 +196,7 @@ n == height.length
         System.out.println(maxArea(height));
 
         numsThreeSum = [-1,0,1,2,-1,-4];
-        System.out.println(Arrays.toString(threeSum(numsThreeSum)));
+        System.out.println(numsThreeSum(height));
     }
 
 
