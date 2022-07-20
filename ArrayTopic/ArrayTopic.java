@@ -25,9 +25,10 @@ public class ArrayTopic {
     }
 
 /*
-给定两个大小为 m 和 n 的有序数组 nums1 和 nums2。
-请你找出这两个有序数组的中位数，并且要求算法的时间复杂度为 O(log(m + n))。
-你可以假设 nums1 和 nums2 不会同时为空。
+4. 寻找两个正序数组的中位数
+给定两个大小分别为 m 和 n 的正序（从小到大）数组 nums1 和 nums2。请你找出并返回这两个正序数组的 中位数 。
+
+算法的时间复杂度应该为 O(log (m+n)) 。
 */
 /*
     public static double findMidian(int [] nums1, int [] nums2) {
@@ -132,9 +133,10 @@ public class ArrayTopic {
 */
 
 /*
-给定一个长度为 n 的整数数组 height 。有 n 条垂线，第 i 条线的两个端点是 (i, 0) 和 (i, height[i]) 。
+11. 盛最多水的容器
+给定一个长度为 n 的整数数组 height 。有 n 条垂线，第 i 条线的两个端点是 (i, 0) 和 (i, height[i]) 。
 
-找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。
+找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。
 
 返回容器可以储存的最大水量。
 
