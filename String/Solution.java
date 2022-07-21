@@ -62,6 +62,28 @@ class Solution {
 
 对于本题而言，当 needle 是空字符串时我们应当返回 0 。这与 C 语言的 strstr() 以及 Java 的 indexOf() 定义相符。
 */
+    public int strStr(String haystack, String needle) {
+        boolean hasFound = false;
+        int needle_size = needle.length();
+        if(needle_size==0){
+            return 0;
+        }
+        int result = -1;
+        int total_size = haystack.length();
+        for (int i=0;i<total_size - needle_size + 1;i++){
+            int j = 0;
+            for (j=0;j < needle_size;j++){
+                if(haystack.charAt(i + j) == needle.charAt(j)){
+                }else{
+                    break;
+                }
+            }
+            if(j==needle_size){
+                return i;
+            }
+        }
+        return result;
+    }
 }
 public static void main(String[] args) {
     Solution.romanToInt('XXVII');
