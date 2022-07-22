@@ -241,6 +241,23 @@ n == height.length
         }
         return closest_num;
     }
+/*
+1480. 一维数组的动态和
+给你一个数组 nums 。数组「动态和」的计算公式为：runningSum[i] = sum(nums[0]…nums[i]) 。
+
+请返回 nums 的动态和。
+*/
+    public int[] runningSum(int[] nums) {
+        int nums_size = nums.length;
+        int[] result = new int[nums_size];
+        int sum=0;
+        for (int i=0;i<nums_size;i++){
+            sum += nums[i];
+            result[i]=sum;
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         //int nums[] = new int[]{2, 5, 7, 8};
         //TwoSum(nums, 10);

@@ -62,6 +62,7 @@ class Solution {
 
 对于本题而言，当 needle 是空字符串时我们应当返回 0 。这与 C 语言的 strstr() 以及 Java 的 indexOf() 定义相符。
 */
+    //暴力版
     public int strStr(String haystack, String needle) {
         boolean hasFound = false;
         int needle_size = needle.length();
@@ -80,6 +81,57 @@ class Solution {
             }
             if(j==needle_size){
                 return i;
+            }
+        }
+        return result;
+    }
+
+    /*KMP版
+    haystack为被搜索的字符串，被搜索的字符串指针为i
+    needle需要搜索的字符串，指针为j
+    理解KMP有两点:
+    1,什么是PMT,(Partial Match Table),是一个needle各字符的索引和一个回退值,当haystack[i]!=needle[j]时，j回退到哪个index再比较
+    2,PMT值怎么来的，是最大相同前后缀的长度，比如说[abcdabcfch]那么他的子字符串[abcdabc]来说，[0:3],[4:7]已经匹配相同,PMT值为3(即i指针只需和j=3的位置比较)
+    3,PMT的计算，以[abcdabcfch]为例：
+        初始i=0,j=1；
+        比较needle[i]和needle[j],相等时,next[j]=next[i]+1;不相等时,再比较needle[j]和needle[inext[j-1]]，一直循环，
+        原理是不断假设下一个最大相同后缀加一相同，如果不相同，再从下一个最大相同后缀的位置比较
+    4,快速构建Next数组:比较needle[i],比较needle[i],
+    */
+
+    //构建Next数组
+     private int[] GetNext(String needle){
+        int needle_size = needle.length();
+        int[] next =new int[needle_size];
+        next[1]=0;
+        for (int i = 1, j = 0; i < needle_size; i++){
+            while(j>0 && needle.charAt(i)!=needle.charAt(j)){
+                j=next[i-1];
+            }
+            if(j==0 || needle.charAt(i)==needle.charAt(j)){
+                j++;
+            }
+            next[i]=j;
+        }
+        return next;
+    }
+    public int strStr(String haystack, String needle) {
+        int needle_size = needle.length();
+        if(needle_size==0){
+            return 0;
+        }
+        int[] next = GetNext(needle);
+        int result = -1;
+        int total_size = haystack.length();
+        for (int i = 0, j = 0;i < total_size;i++){
+            while (j>0 && haystack.charAt(i) != needle.charAt(j)){
+                j = next[j-1];
+            }
+            if(haystack.charAt(i) == needle.charAt(j)){
+                j++;
+            }
+            if(j==needle_size){
+                return i-j+1;
             }
         }
         return result;
