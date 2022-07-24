@@ -165,26 +165,25 @@ public boolean canConstruct(String ransomNote, String magazine) {
 
 输入为 非空 字符串且只包含数字 1 和 0。
 */
-public String addBinary(String a, String b) {
-        
-        int x = a.length();
+    public String addBinary(String a, String b) {
+        int x = a.length(); 
         int y = b.length();
-        if (x<y){
-            return addBinary(b,a);
-        }
         StringBuffer result = new StringBuffer();
-        int carry = 1;
-        char n = "1";
-        for (i =x-1;i>y;i--){
-            if(i<y){
-                if(a.atChar(i)==n &&){
-                if()
-            }else{
-
+        int carry = 0;
+        char n = '1';
+        for (int i = x-1, j = y-1;i>-1 || j>-1;i--,j--){
+            int sum = carry;
+            carry = 0;
+            sum += (i > -1? a.charAt(i) - '0' : 0);
+            sum += (j > -1? b.charAt(j) - '0' : 0);
+            result.append(sum%2);
+            carry=(sum > 1?1:0);
         }
-        }
-        }
-}
+        if(carry>0){
+            result.append('1');
+        } 
+        return result.reverse().toString();
+    }
 
 public static void main(String[] args) {
     Solution.romanToInt('XXVII');
