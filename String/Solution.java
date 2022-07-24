@@ -159,6 +159,33 @@ public boolean canConstruct(String ransomNote, String magazine) {
         } 
         return true;
 }
+/*
+67. 二进制求和
+给你两个二进制字符串，返回它们的和（用二进制表示）。
+
+输入为 非空 字符串且只包含数字 1 和 0。
+*/
+public String addBinary(String a, String b) {
+        
+        int x = a.length();
+        int y = b.length();
+        if (x<y){
+            return addBinary(b,a);
+        }
+        StringBuffer result = new StringBuffer();
+        int carry = 1;
+        char n = "1";
+        for (i =x-1;i>y;i--){
+            if(i<y){
+                if(a.atChar(i)==n &&){
+                if()
+            }else{
+
+        }
+        }
+        }
+}
+
 public static void main(String[] args) {
     Solution.romanToInt('XXVII');
 }
