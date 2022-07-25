@@ -185,6 +185,46 @@ public boolean canConstruct(String ransomNote, String magazine) {
         return result.reverse().toString();
     }
 
+
+/**
+3. 无重复字符的最长子串
+给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串 的长度。
+
+
+示例 1:
+
+输入: s = "abcabcbb"
+输出: 3 
+解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
+示例 2:
+
+输入: s = "bbbbb"
+输出: 1
+解释: 因为无重复字符的最长子串是 "b"，所以其长度为 1。
+示例 3:
+
+输入: s = "pwwkew"
+输出: 3
+解释: 因为无重复字符的最长子串是 "wke"，所以其长度为 3。
+     请注意，你的答案必须是 子串 的长度，"pwke" 是一个子序列，不是子串。
+ */
+    public int lengthOfLongestSubstring(String s) {
+        int max_sum = 0;
+        int s_size = s.length();
+        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
+        if (s_size < 2){
+            return s_size;
+        }
+        for (int left = 0,right =0 ;right < s_size;right++){
+            if(map.containsKey(s.charAt(right))){
+                left=Math.max(left, map.get(s.charAt(right))+1);
+            }
+            map.put(s.charAt(right),right);
+            max_sum = Math.max(max_sum, right -left+1);
+        }
+        return max_sum;
+    }
+
 public static void main(String[] args) {
     Solution.romanToInt('XXVII');
 }
