@@ -33,7 +33,7 @@ class Solution {
                 case 'M': return 1000;
                 default: return 0;
             }
-    
+    }
     public int romanToInt(String s) {
         int result = 0;
         int string_size=s.length();
@@ -136,7 +136,7 @@ class Solution {
         }
         return result;
     }
-}
+
 
 /*
 383. 赎金信
@@ -146,7 +146,7 @@ class Solution {
 
 magazine 中的每个字符只能在 ransomNote 中使用一次。
 */
-public boolean canConstruct(String ransomNote, String magazine) {
+    public boolean canConstruct(String ransomNote, String magazine) {
         int[] counter = new int[26];
         for (int i=0;i< magazine.length(); i++){
             counter[magazine.charAt(i)-'a'] += 1;
@@ -158,7 +158,7 @@ public boolean canConstruct(String ransomNote, String magazine) {
             }
         } 
         return true;
-}
+    }
 /*
 67. 二进制求和
 给你两个二进制字符串，返回它们的和（用二进制表示）。
@@ -208,7 +208,7 @@ public boolean canConstruct(String ransomNote, String magazine) {
 解释: 因为无重复字符的最长子串是 "wke"，所以其长度为 3。
      请注意，你的答案必须是 子串 的长度，"pwke" 是一个子序列，不是子串。
  */
-    public int lengthOfLongestSubstring(String s) {
+    public static int lengthOfLongestSubstring(String s) {
         int max_sum = 0;
         int s_size = s.length();
         HashMap<Character, Integer> map = new HashMap<Character, Integer>();
@@ -224,7 +224,8 @@ public boolean canConstruct(String ransomNote, String magazine) {
         }
         return max_sum;
     }
-
+}
 public static void main(String[] args) {
-    Solution.romanToInt('XXVII');
+    //Solution.romanToInt('XXVII');
+    Solution.lengthOfLongestSubstring("abba");
 }
